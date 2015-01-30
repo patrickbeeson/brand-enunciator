@@ -204,12 +204,14 @@ DJANGO_APPS = (
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
+    'brands',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
 
 INSTALLED_APPS += (
+    'rest_framework',
 )
 
 ########## END APP CONFIGURATION
