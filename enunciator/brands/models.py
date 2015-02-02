@@ -1,12 +1,15 @@
 import requests
 import datetime
 import os
+import logging
 
 from model_utils.models import StatusModel
 from model_utils import Choices
 
 from django.db import models
 from django.core.urlresolvers import reverse
+
+logger = logging.getLogger(__name__)
 
 
 class Brand(StatusModel):
@@ -66,6 +69,7 @@ class Brand(StatusModel):
         return reverse('brands.views.detail', args=[str(self.slug)])
 
     def save(self, *args, **kwargs):
+        """Set the video url and thumbnail url values from Vine API"""
         # Split the video ID from the vine URL provided
         vine_video_id = os.path.split(self.vine_url)[1:]
         # Construct the API path for the video
@@ -78,7 +82,11 @@ class Brand(StatusModel):
             r = requests.get(vine_api_path)
             # Abort if we don't get a 200 code
             if r.status_code != 200:
-                logger.error('There was a problem fetching the video using id {}'.format(vine_video_id))
+                logger.error(
+                    'There was a problem fetching the video ID {}'.format(
+                        vine_video_id
+                    )
+                )
                 return
             else:
                 r_json = r.json()
