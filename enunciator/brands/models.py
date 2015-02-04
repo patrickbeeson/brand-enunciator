@@ -30,8 +30,7 @@ class Brand(StatusModel):
         unique=True
     )
     created = models.DateTimeField(
-        auto_now_add=True,
-        default=''
+        auto_now_add=True
     )
     description = models.TextField(
         default='',
