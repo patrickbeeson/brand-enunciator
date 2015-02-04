@@ -1,12 +1,6 @@
-from rest_framework import routers
+from rest_framework.routers import DefaultRouter
 
-from django.conf.urls import url, include
+from . import views
 
-from .views import BrandViewSet
-
-router = routers.DefaultRouter()
+router = DefaultRouter(trailing_slash=False)
 router.register(r'brands', views.BrandViewSet)
-
-urlpatterns = [
-    url(r'^', incude(router.urls))
-]
