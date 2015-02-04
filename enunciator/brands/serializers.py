@@ -6,8 +6,8 @@ from .models import Brand
 
 class BrandSerializer(serializers.ModelSerializer):
     """Brand serializer"""
-    status_display = serializers.SerializerMethodField('get_status_display')
-    links = serializers.SerializerMethodField('get_links')
+    status_display = serializers.SerializerMethodField()
+    links = serializers.SerializerMethodField()
 
     class Meta:
         model = Brand
@@ -40,7 +40,7 @@ class BrandSerializer(serializers.ModelSerializer):
         return {
             'self': reverse(
                 'brand-detail',
-                kwargs={'slug': obj.slug},
+                kwargs={'pk': obj.pk},
                 request=request,
             )
         }
