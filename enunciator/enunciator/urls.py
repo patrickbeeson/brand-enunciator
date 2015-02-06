@@ -13,7 +13,7 @@ admin.site.site_header = 'Brand Enunciator administration'
 urlpatterns = [
     url(r'^api/token/', obtain_auth_token, name='api-token'),
     url(r'^api/', include(router.urls)),
-    url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(r'^$', TemplateView.as_view(template_name='brands/index.html')),
     url(r'^admin/', include(admin.site.urls))
 ]
 

@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html class="no-js">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Brand Enunciator</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <body>
+        <script src="{% static 'brands/vendor/jquery.js' %}"></script>
+        <script src="{% static 'brands/vendor/underscore.js' %}"></script>
+        <script src="{% static 'brands/vendor/backbone.js' %}"></script>
+        <script type="text/json" id="config">
+            {
+                "models": {},
+                "collections": {},
+                "views": {},
+                "router": null
+            }
+        </script>
+        <script src="{% static 'brands/js/app.js' %}"></script>
+        <script src="{% static 'brands/js/models.js' %}"></script>
+        <script src="{% static 'brands/js/views.js' %}"></script>
+        <script src="{% static 'brands/js/router.js' %}"></script>
+    </body>
+</html>
