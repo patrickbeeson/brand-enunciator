@@ -62,6 +62,7 @@ class Brand(StatusModel):
     )
     video = models.FileField(
         upload_to='brands/videos',
+        max_length=200,
         default='',
         blank=True,
         help_text='Will populate when the brand is saved',
@@ -74,6 +75,7 @@ class Brand(StatusModel):
     )
     video_thumbnail = models.ImageField(
         upload_to='brands/video_thumbnails',
+        max_length=200,
         default='',
         blank=True,
         help_text='Will populate when brand is saved',
@@ -83,22 +85,24 @@ class Brand(StatusModel):
     class Meta:
         ordering = ['created']
 
-    def get_remote_image(self):
+    def get_vine_thumbnail(self):
+        """Save vine video thumbnail to local media"""
         if self.video_thumbnail_url and not self.video_thumbnail:
             local_tn, headers = urllib.request.urlretrieve(self.video_thumbnail_url)
             with open(local_tn, 'rb') as tn:
                 self.video_thumbnail.save(
-                    os.path.basename(self.slug).split('?')[0],
+                    os.path.basename(self.video_thumbnail_url).split('?')[0],
                     File(tn)
                 )
             self.save()
 
-    def get_remote_video(self):
+    def get_vine_video(self):
+        """Save vine video to local media"""
         if self.video_url and not self.video:
             local_video, headers = urllib.request.urlretrieve(self.video_url)
             with open(local_video, 'rb') as video:
                 self.video.save(
-                    os.path.basename(self.slug).split('?')[0],
+                    os.path.basename(self.video_url).split('?')[0],
                     File(video)
                 )
             self.save()
@@ -135,8 +139,8 @@ class Brand(StatusModel):
             except ConnectionError:
                 logger.error('There was a problem connecting to Vine.')
         super(Brand, self).save(*args, **kwargs)
-        self.get_remote_video()
-        self.get_remote_image()
+        self.get_vine_video()
+        self.get_vine_thumbnail()
 
     def __str__(self):
         return '{}'.format(self.name)
