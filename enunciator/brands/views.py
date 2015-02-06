@@ -12,7 +12,7 @@ class DefaultsMixin(object):
     )
 
     permission_classes = (
-        permissions.IsAuthenticated,
+        permissions.IsAuthenticatedOrReadOnly,
     )
 
     paginate_by = 25
