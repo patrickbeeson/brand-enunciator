@@ -22,7 +22,6 @@
             return response.results || [];
         },
         getOrFetch: function (id) {
-            console.log(id);
             var result = new $.Deferred(),
                 model = this.get(id);
             if (!model) {
