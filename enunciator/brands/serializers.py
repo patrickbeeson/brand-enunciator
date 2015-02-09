@@ -21,11 +21,6 @@ class BrandSerializer(serializers.ModelSerializer):
             'logo',
             'video',
             'video_thumbnail',
-            'vine_url',
-            'video_url',
-            'video_thumbnail_url',
-            'status',
-            'status_changed',
             'links',
             'status_display',
         )
@@ -40,7 +35,7 @@ class BrandSerializer(serializers.ModelSerializer):
         return {
             'self': reverse(
                 'brand-detail',
-                kwargs={'pk': obj.pk},
+                kwargs={'slug': obj.slug},
                 request=request,
             )
         }

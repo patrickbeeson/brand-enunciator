@@ -26,3 +26,5 @@ class BrandViewSet(DefaultsMixin, viewsets.ModelViewSet):
     """
     queryset = Brand.published.all()
     serializer_class = BrandSerializer
+    lookup_field = 'slug'
+    lookup_url_kwarg = 'slug'

@@ -2,7 +2,7 @@
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
-            'brand/:id': 'brand'
+            'brand/:slug': 'brand'
         },
         initialize: function (options) {
             this.contentElement = '#content';
