@@ -2,7 +2,7 @@
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
-            'brand/:slug': 'brand'
+            'brand/:id': 'brand'
         },
         initialize: function (options) {
             this.contentElement = '#content';
@@ -13,10 +13,10 @@
             var view = new app.views.HomePageView({el: this.contentElement});
             this.render(view);
         },
-        brand: function (slug) {
+        brand: function (id) {
             var view = new app.views.BrandView({
                 el: this.contentElement,
-                brandSlug: slug
+                brandId: id
             });
             this.render(view);
         },

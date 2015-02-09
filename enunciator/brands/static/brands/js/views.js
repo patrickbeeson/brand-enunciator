@@ -6,8 +6,7 @@
             this.template = _.template($(this.templateName).html());
         },
         render: function () {
-            var context = this.getContext(),
-                html = this.template(context);
+            var context = this.getContext(), html = this.template(context);
             this.$el.html(html);
         },
         getContext: function () {
@@ -34,14 +33,16 @@
         initialize: function (options) {
             var self = this;
             TemplateView.prototype.initialize.apply(this, arguments);
-            this.brandSlug = options.brandSlug;
+            this.brandId = options.brandId;
             this.brand = null;
             app.collections.ready.done(function () {
-                self.brand = app.brands.push({slug: self.brandSlug});
-                self.brand.fetch({
-                    success: function () {
-                        self.render();
-                    }
+                app.brands.getOrFetch(self.brandId).done(function (brand) {
+                    self.brand = brand;
+                    self.render();
+                }).fail(function (brand) {
+                    self.brand = brand;
+                    self.brand.invalid = true;
+                    self.render();
                 });
             });
         },
@@ -50,7 +51,7 @@
         }
     });
 
-    app.views.Brandview = BrandView;
     app.views.HomePageView = HomePageView;
+    app.views.BrandView = BrandView;
 
 })(jQuery, Backbone, _, app);

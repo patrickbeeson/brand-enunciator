@@ -22,15 +22,16 @@
             <% } %>
         </script>
         <script type="text/html" id="brand-template">
-            <p>
-                test
-            </p>
             <% if (brand !== null) { %>
-                <h2><%- brand.get('name') %></h2>
-                <p class="description">
-                    <%- brand.get('description') %>
-                </p>
-            <% } else {%>
+                <% if (!brand.invalid) { %>
+                    <h2><%- brand.get('name') %></h2>
+                    <p class="description">
+                        <%- brand.get('description') %>
+                    </p>
+                <% } else { %>
+                    <h1>Brand <%- brand.get('id') %> not found.</h1>
+                <% } %>
+            <% } else { %>
                 <h1>Loading...</h1>
             <% } %>
         </script>
