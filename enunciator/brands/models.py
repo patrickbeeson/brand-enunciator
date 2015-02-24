@@ -81,6 +81,11 @@ class Brand(StatusModel):
         help_text='Will populate when brand is saved',
         validators=[validate_file_type],
     )
+    video_views = models.PositiveIntegerField(
+        default=0,
+        blank=True,
+        null=True,
+    )
 
     class Meta:
         ordering = ['created']

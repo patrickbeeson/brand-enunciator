@@ -10,6 +10,7 @@ class BrandAdmin(admin.ModelAdmin):
     readonly_fields = (
         'video_url',
         'video_thumbnail_url',
+        'video_views',
     )
     fieldsets = (
         (None, {
@@ -20,6 +21,7 @@ class BrandAdmin(admin.ModelAdmin):
                 'website',
                 'logo',
                 'vine_url',
+                'video_views',
             )
         }),
         ('Status', {

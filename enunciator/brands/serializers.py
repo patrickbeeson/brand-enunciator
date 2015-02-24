@@ -23,6 +23,7 @@ class BrandSerializer(serializers.ModelSerializer):
             'video_thumbnail',
             'links',
             'status_display',
+            'video_views',
         )
 
     def get_status_display(self, obj):
