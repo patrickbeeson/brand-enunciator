@@ -13,6 +13,7 @@
   "author": "Patrick Beeson, The Variable",
   "license": "MIT",
   "devDependencies": {
-    "gulp": "^3.8.10"
+    "gulp": "^3.8.10",
+    "jasmine": "^2.2.1"
   }
 }
