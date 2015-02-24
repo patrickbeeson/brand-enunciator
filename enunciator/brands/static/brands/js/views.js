@@ -43,7 +43,7 @@
             e.preventDefault();
             var video = this.$('.sound').parent().find('video');
             video.prop('muted', !video.prop('muted'));
-            $(this).toggleClass('is-muted');
+            this.$('.sound').toggleClass('is-muted');
         },
         openCard: function (e) {
             e.preventDefault();
