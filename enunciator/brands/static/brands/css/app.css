@@ -459,8 +459,11 @@ p {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  background: url("/img/icon-sound-on.svg") 0 0 no-repeat;
+  background: url("../img/icon-sound-on.svg") 0 0 no-repeat;
   background-size: 22px 22px;
+}
+.card-video .sound.is-muted {
+  background-image: url("../img/icon-sound-off.svg");
 }
 .card-video .play-count {
   padding: 0 15px 0 40px;
@@ -473,7 +476,7 @@ p {
   font-size: 0.75rem;
   line-height: 36px;
   color: #fff;
-  background: #8065b4 url("/img/icon-play.svg") 15px 50% no-repeat;
+  background: #8065b4 url("../img/icon-play.svg") 15px 50% no-repeat;
   background-size: 12px 15px;
   border-radius: 100px;
 }
@@ -552,7 +555,7 @@ p {
   position: absolute;
   top: 0;
   right: 0;
-  background: #cdd0d5 url("/img/icon-more-info.svg") 50% 50% no-repeat;
+  background: #cdd0d5 url("../img/icon-more-info.svg") 50% 50% no-repeat;
   background-size: 27px 7px;
   border-radius: 0 0 10px 0;
   cursor: pointer;
@@ -562,7 +565,7 @@ p {
   background-color: #b6bbc2;
 }
 .card-footer .more-info.is-open {
-  background-image: url("/img/icon-close.svg");
+  background-image: url("../img/icon-close.svg");
   background-size: 20px 20px;
 }
 .card-footer .more-info.is-open:hover {
@@ -579,7 +582,7 @@ p {
   background: #cdd0d5;
 }
 .card-back .card-footer .more-info {
-  background: #cdd0d5 url("/img/icon-return.svg") 50% 50% no-repeat;
+  background: #cdd0d5 url("../img/icon-return.svg") 50% 50% no-repeat;
   background-size: 27px 19px;
 }
 .card-back .card-footer .more-info:hover {

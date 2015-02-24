@@ -15,7 +15,7 @@
                         <div class="card-video">
                             <div class="video">
                                 <video preload="auto" src="<%- brand.get('video') %>" poster="<%- brand.get('video_thumbnail') %>"></video>
-                                <a href="#" class="sound sound--on"></a>
+                                <a href="#" class="sound"></a>
                                 <span class="play-count"><%- brand.get('video_views') %></span>
                                 <div class="card-description">
                                     <p><%- brand.get('description') %></p>
@@ -84,5 +84,6 @@
         <script src="{% static 'brands/js/models.js' %}"></script>
         <script src="{% static 'brands/js/views.js' %}"></script>
         <script src="{% static 'brands/js/router.js' %}"></script>
+        <script src="{% static 'brands/js/card.js' %}"></script>
     </body>
 </html>

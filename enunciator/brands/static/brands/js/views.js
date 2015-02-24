@@ -25,6 +25,30 @@
         },
         getContext: function () {
             return {brands: app.brands || null};
+        },
+        events: {
+            'click .video video': 'pauseVideo',
+            'click .sound': 'muteVideo',
+            'click .js-open-card': 'openCard'
+        },
+        pauseVideo: function () {
+            var video = this.$('.video video');
+            if (video.prop('paused')) {
+              video[0].play();
+            } else {
+              video.get(0).pause();
+            }
+        },
+        muteVideo: function (e) {
+            e.preventDefault();
+            var video = this.$('.sound').parent().find('video');
+            video.prop('muted', !video.prop('muted'));
+            $(this).toggleClass('is-muted');
+        },
+        openCard: function (e) {
+            e.preventDefault();
+            this.$('.js-open-card').toggleClass('is-open');
+            this.$('.js-open-card').closest('.card-container').toggleClass('is-open');
         }
     });
 
