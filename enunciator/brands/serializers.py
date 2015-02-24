@@ -15,6 +15,7 @@ class BrandSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'slug',
+            'tagline',
             'description',
             'created',
             'website',

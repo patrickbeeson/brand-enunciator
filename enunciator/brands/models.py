@@ -1,5 +1,4 @@
 import requests
-import datetime
 import os
 import logging
 import urllib
@@ -8,9 +7,7 @@ from model_utils.models import StatusModel
 from model_utils import Choices
 
 from django.core.files import File
-from django.core.files.temp import NamedTemporaryFile
 from django.db import models
-from django.core.urlresolvers import reverse
 
 from enunciator.utils.validators import validate_file_type
 
@@ -35,6 +32,11 @@ class Brand(StatusModel):
     created = models.DateTimeField(
         auto_now_add=True,
     )
+    tagline = models.CharField(
+        max_length=200,
+        default='',
+        help_text='Plain text only. Limited to 200 characters.',
+    )
     description = models.TextField(
         default='',
         help_text='Plain text only',
@@ -52,7 +54,8 @@ class Brand(StatusModel):
     )
     vine_url = models.URLField(
         default='',
-        help_text='Paste the full URL to the individual Vine video (e.g. https://vine.co/v/bEjAgXjnzAW)',
+        help_text='Paste the full URL to the individual Vine '
+                  'video (e.g. https://vine.co/v/bEjAgXjnzAW)',
         blank=True,
     )
     video_url = models.URLField(
@@ -93,7 +96,8 @@ class Brand(StatusModel):
     def get_vine_thumbnail(self):
         """Save vine video thumbnail to local media"""
         if self.video_thumbnail_url and not self.video_thumbnail:
-            local_tn, headers = urllib.request.urlretrieve(self.video_thumbnail_url)
+            local_tn, headers = urllib.request.urlretrieve(
+                self.video_thumbnail_url)
             with open(local_tn, 'rb') as tn:
                 self.video_thumbnail.save(
                     os.path.basename(self.video_thumbnail_url).split('?')[0],

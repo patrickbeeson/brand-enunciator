@@ -17,6 +17,7 @@ class BrandAdmin(admin.ModelAdmin):
             'fields': (
                 'name',
                 'slug',
+                'tagline',
                 'description',
                 'website',
                 'logo',
