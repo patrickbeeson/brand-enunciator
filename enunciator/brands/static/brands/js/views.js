@@ -16,8 +16,15 @@
 
     var HomePageView = TemplateView.extend({
         templateName: '#home-template',
+        events: {
+            'click video': 'updateCounter',
+            'click .video video': 'playVideo',
+            'click .sound': 'muteVideo',
+            'click .js-open-card': 'openCard'
+        },
         initialize: function (options) {
             var self = this;
+
             TemplateView.prototype.initialize.apply(this, arguments);
             app.collections.ready.done(function () {
                 app.brands.fetch({success: $.proxy(self.render, self)});
@@ -26,12 +33,18 @@
         getContext: function () {
             return {brands: app.brands || null};
         },
-        events: {
-            'click .video video': 'pauseVideo',
-            'click .sound': 'muteVideo',
-            'click .js-open-card': 'openCard'
+        updateCounter: function (e) {
+            var id = $(e.currentTarget).data('id');
+            var item = self.app.brands.get(id);
+            var views = item.get('video_views');
+            var video = this.$('.video video');
+            // Only update the counter if the video is in play state
+            if (video.prop('paused')) {
+                item.save({video_views: views + 1}, {patch: true});
+                this.render();
+            }
         },
-        pauseVideo: function () {
+        playVideo: function (e) {
             var video = this.$('.video video');
             if (video.prop('paused')) {
               video[0].play();
@@ -41,7 +54,7 @@
         },
         muteVideo: function (e) {
             e.preventDefault();
-            var video = this.$('.sound').parent().find('video');
+            var video = this.$el.parent().find('video');
             video.prop('muted', !video.prop('muted'));
             this.$('.sound').toggleClass('is-muted');
         },
