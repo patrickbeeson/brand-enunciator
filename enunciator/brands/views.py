@@ -12,7 +12,6 @@ class DefaultsMixin(object):
     )
 
     permission_classes = (
-        # permissions.IsAuthenticatedOrReadOnly,
         permissions.AllowAny,
     )
 
