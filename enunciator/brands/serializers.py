@@ -26,6 +26,20 @@ class BrandSerializer(serializers.ModelSerializer):
             'status_display',
             'video_views',
         )
+        read_only_fields = (
+            'id',
+            'name',
+            'slug',
+            'tagline',
+            'description',
+            'created',
+            'website',
+            'logo',
+            'video',
+            'video_thumbnail',
+            'links',
+            'status_display',
+        )
 
     def get_status_display(self, obj):
         """Return status using get_foo_display method from Django"""
