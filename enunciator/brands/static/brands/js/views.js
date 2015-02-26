@@ -1,5 +1,7 @@
 (function ($, Backbone, _, app) {
 
+    var supportsTouch = 'ontouchstart' in window || navigator.msMaxTouchPoints;
+
     var TemplateView = Backbone.View.extend({
         templateName: '',
         initialize: function () {
@@ -16,13 +18,27 @@
 
     var HomePageView = TemplateView.extend({
         templateName: '#home-template',
-        events: {
-            // 'click video': 'videoControls',
-            'click video': 'updateCounter',
-            'click .video video': 'playVideo',
-            'click .sound': 'muteVideo',
-            'click .js-open-card': 'openCard'
+        events: function () {
+            return supportsTouch ?
+            {
+                'touchstart .video video': 'playVideo',
+                'touchstart video': 'updateCounter',
+                'touchstart .sound': 'muteVideo',
+                'touchstart .js-open-card': 'openCard'
+            } :
+            {
+                'click .video video': 'playVideo',
+                'click video': 'updateCounter',
+                'click .sound': 'muteVideo',
+                'click .js-open-card': 'openCard'
+            };
         },
+        // events: {
+        //     'click video': 'updateCounter',
+        //     'touchclick .video video': 'playVideo',
+        //     'click .sound': 'muteVideo',
+        //     'click .js-open-card': 'openCard'
+        // },
         initialize: function (options) {
             var self = this;
 
