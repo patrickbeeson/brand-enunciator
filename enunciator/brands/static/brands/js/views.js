@@ -17,6 +17,7 @@
     var HomePageView = TemplateView.extend({
         templateName: '#home-template',
         events: {
+            // 'click video': 'videoControls',
             'click video': 'updateCounter',
             'click .video video': 'playVideo',
             'click .sound': 'muteVideo',
@@ -37,7 +38,7 @@
             var id = $(e.currentTarget).data('id');
             var item = self.app.brands.get(id);
             var views = item.get('video_views');
-            var video = this.$('.video video');
+            var video = $(e.currentTarget);
             // Only update the counter if the video is in play state
             if (video.prop('paused')) {
                 item.save({video_views: views + 1}, {patch: true});
@@ -45,23 +46,24 @@
             }
         },
         playVideo: function (e) {
-            var video = this.$('.video video');
+            var id = $(e.currentTarget).data('id');
+            var video = $('#' + id);
             if (video.prop('paused')) {
-              video[0].play();
+                video[0].play();
             } else {
               video.get(0).pause();
             }
         },
         muteVideo: function (e) {
             e.preventDefault();
-            var video = this.$el.parent().find('video');
+            var video = $(e.currentTarget).parent().find('video');
             video.prop('muted', !video.prop('muted'));
-            this.$('.sound').toggleClass('is-muted');
+            $(e.currentTarget).toggleClass('is-muted');
         },
         openCard: function (e) {
             e.preventDefault();
-            this.$('.js-open-card').toggleClass('is-open');
-            this.$('.js-open-card').closest('.card-container').toggleClass('is-open');
+            $(e.currentTarget).toggleClass('is-open');
+            $(e.currentTarget).closest('.card-container').toggleClass('is-open');
         }
     });
 
